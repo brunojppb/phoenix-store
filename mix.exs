@@ -46,6 +46,8 @@ defmodule Mango.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:nimble_csv, "~> 1.1.0"},
+      # Bcrypt needs a C compiler available during deployment
+      # See: https://github.com/riverrun/comeonin/wiki/Deployment
       {:bcrypt_elixir, "~> 2.0"}
     ]
   end
