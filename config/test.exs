@@ -18,5 +18,8 @@ config :mango, MangoWeb.Endpoint,
   http: [port: 4002],
   server: false
 
+# fewer rounds to generate hashes during tests, speeding up suite
+config :bcrypt_elixir, :log_rounds, 4
+
 # Print only warnings and errors during test
 config :logger, level: :warn

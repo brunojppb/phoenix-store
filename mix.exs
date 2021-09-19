@@ -46,6 +46,7 @@ defmodule Mango.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:nimble_csv, "~> 1.1.0"},
+      {:bcrypt_elixir, "~> 2.0"}
     ]
   end
 

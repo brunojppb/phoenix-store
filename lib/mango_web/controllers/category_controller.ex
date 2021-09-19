@@ -8,6 +8,9 @@ defmodule MangoWeb.CategoryController do
     |> assign(:products, products)
     |> assign(:name, name)
     |> render("show.html")
+
+    # Instead of using assign, we can do:
+    # render("show.html", products: products, name: name)
   end
 
 end
