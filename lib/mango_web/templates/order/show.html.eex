@@ -1,0 +1,15 @@
+<h1>Order <%= @order.id %></h1>
+
+<h2>Status</h2>
+<span><%= @order.status %><span>
+
+<h2>Products Ordered</h2>
+<div class="container">
+  <div class="row">
+  <%= for item <- @order.line_items do %>
+    <div class="col-xs-12">
+      <%= "#{item.product_name} | #{item.quantity} | #{item.total} EUR" %>
+    </div>
+  <% end %>
+  </div>
+</div>

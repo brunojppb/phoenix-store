@@ -49,4 +49,12 @@ defmodule Mango.Sales do
     query = from(o in Order, where: o.customer_id == ^customer_id)
     Repo.all(query)
   end
+
+  def get_customer_order(order_id, customer_id) do
+    query = from(o in Order, where: o.id == ^order_id and o.customer_id == ^customer_id)
+    case Repo.all(query) do
+      [order] -> order
+      [] -> nil
+    end
+  end
 end
