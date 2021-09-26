@@ -7,6 +7,10 @@ defmodule MangoWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+  end
+
+  # Frontend related plugs
+  pipeline :frontend do
     plug MangoWeb.Plugs.LoadCustomer
     plug MangoWeb.Plugs.FetchCart
   end
@@ -16,14 +20,12 @@ defmodule MangoWeb.Router do
   end
 
   scope "/", MangoWeb do
-    pipe_through :browser
+    pipe_through [:browser, :frontend]
 
     get "/", PageController, :index
 
     get "/login", SessionController, :new
     post "/login", SessionController, :create
-
-    get "/logout", SessionController, :delete
 
     get "/register", RegistrationController, :new
     post "/register", RegistrationController, :create
@@ -33,6 +35,16 @@ defmodule MangoWeb.Router do
     post "/cart", CartController, :add
     get "/cart", CartController, :show
     put "/cart", CartController, :update
+  end
+
+  # Only autenticated users here
+  scope "/", MangoWeb do
+    pipe_through [:browser, :frontend, MangoWeb.Plugs.AuthenticateUser]
+
+    get "/logout", SessionController, :delete
+    get "/checkout", CheckoutController, :edit
+    put "/checkout", CheckoutController, :update
+
   end
 
   # Other scopes may use custom stacks.
