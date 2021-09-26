@@ -22,4 +22,10 @@ defmodule MangoWeb.SessionController do
         |> redirect(to: Routes.page_path(conn, :index))
     end
   end
+
+  def delete(conn, _) do
+    clear_session(conn)
+    |> put_flash(:info, "Logout successfuly completed")
+    |> redirect(to: Routes.page_path(conn, :index))
+  end
 end

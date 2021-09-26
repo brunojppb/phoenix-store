@@ -7,6 +7,7 @@ defmodule MangoWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug MangoWeb.Plugs.LoadCustomer
   end
 
   pipeline :api do
@@ -20,6 +21,8 @@ defmodule MangoWeb.Router do
 
     get "/login", SessionController, :new
     post "/login", SessionController, :create
+
+    get "/logout", SessionController, :delete
 
     get "/register", RegistrationController, :new
     post "/register", RegistrationController, :create
