@@ -16,3 +16,8 @@ import "phoenix_html"
 
 import "jquery"
 import "bootstrap"
+
+import cart from './cart'
+
+// All cart AJAX handlers
+cart.init()

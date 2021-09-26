@@ -3,6 +3,10 @@ defmodule MangoWeb.LayoutView do
   import MangoWeb.CartView, only: [cart_count: 1]
 
   def cart_link_text(conn = %Plug.Conn{}) do
-    "My Cart (#{cart_count(conn)})"
+    raw """
+    <span class="cart-count">
+      "My Cart (#{cart_count(conn)})"
+    </span>
+    """
   end
 end

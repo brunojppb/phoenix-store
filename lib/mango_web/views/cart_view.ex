@@ -12,4 +12,12 @@ defmodule MangoWeb.CartView do
     end)
   end
 
+  def render("add.json", %{cart: cart, cart_params: cart_params}) do
+    %{"product_name" => name, "quantity" => quantity} = cart_params
+    %{
+      message: "Product added to cart - #{name} x #{quantity}",
+      cart_count: cart_count(cart)
+    }
+  end
+
 end
