@@ -2,7 +2,7 @@
 <%= if Enum.empty?(@cart.line_items) do %>
   <p>Your cart is empty</p>
 <% else %>
-  <%= form_for @cart_changeset, "/cart", fn f -> %>
+  <%= form_for @cart_changeset, Routes.cart_path(@conn, :update), fn f -> %>
     <table class="table">
       <thead>
         <tr>

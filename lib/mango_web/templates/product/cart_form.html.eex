@@ -1,4 +1,4 @@
-<%= form_for @conn, "/cart", [class: "cart-form form-inline", as: :cart], fn f -> %>
+<%= form_for @conn, Routes.cart_path(@conn, :add), [class: "cart-form form-inline", as: :cart], fn f -> %>
   <div class="form-group">
     <div class="input-group">
       <%= hidden_input f, :product_name, value: @product.name %>
