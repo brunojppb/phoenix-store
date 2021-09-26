@@ -31,6 +31,7 @@ defmodule MangoWeb.Router do
     get "/categories/:name", CategoryController, :show
 
     post "/cart", CartController, :add
+    get "/cart", CartController, :show
   end
 
   # Other scopes may use custom stacks.

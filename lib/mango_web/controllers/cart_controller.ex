@@ -19,4 +19,9 @@ defmodule MangoWeb.CartController do
     end
   end
 
+  def show(conn, _params) do
+    cart = conn.assigns.cart
+    render conn, "show.html", cart: cart
+  end
+
 end
