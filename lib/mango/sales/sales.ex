@@ -1,6 +1,7 @@
 defmodule Mango.Sales do
   alias Mango.Repo
   alias Mango.Sales.Order
+  import Ecto.Query
 
   def get_cart(id) do
     Order
@@ -42,5 +43,10 @@ defmodule Mango.Sales do
     order
     |> Order.checkout_changeset(attrs)
     |> Repo.update()
+  end
+
+  def get_customer_orders(customer_id) do
+    query = from(o in Order, where: o.customer_id == ^customer_id)
+    Repo.all(query)
   end
 end

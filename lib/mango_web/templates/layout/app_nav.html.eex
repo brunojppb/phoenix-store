@@ -15,7 +15,7 @@
       <ul class="nav navbar-nav navbar-right">
       <li><%= link cart_link_text(@conn), to: Routes.cart_path(@conn, :show), class: "cart nav-link" %></li>
         <%= if @customer do %>
-          <%# TODO: replace with the computed path %>
+          <li><%= link "My Orders", to: Routes.order_path(@conn, :index) %></li>
           <li><%= link "Log Out", to: Routes.session_path(@conn, :delete) %></li>
         <% else %>
           <li><%= link "Register", to: Routes.registration_path(@conn, :new), class: "nav-link" %></li>

@@ -44,6 +44,7 @@ defmodule MangoWeb.Router do
     get "/logout", SessionController, :delete
     get "/checkout", CheckoutController, :edit
     put "/checkout", CheckoutController, :update
+    get "/orders", OrderController, :index
 
   end
 
