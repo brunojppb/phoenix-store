@@ -2,6 +2,7 @@ defmodule Mango.CRM.Customer do
   use Ecto.Schema
   import Ecto.Changeset
   import Bcrypt, only: [add_hash: 1]
+  alias Mango.CRM.Ticket
 
   schema "customers" do
     field :email, :string
@@ -10,12 +11,13 @@ defmodule Mango.CRM.Customer do
     field :password_hash, :string
     field :phone, :string
     field :residence_area, :string
+    has_many :tickets, Ticket
 
     timestamps()
   end
 
   @doc false
-  def changeset(customer, attrs) do
+  def changeset(%__MODULE__{} = customer, attrs) do
     customer
     |> cast(attrs, [:name, :email, :phone, :residence_area, :password])
     |> validate_required([:name, :email, :residence_area, :password])
