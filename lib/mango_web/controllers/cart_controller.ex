@@ -7,7 +7,7 @@ defmodule MangoWeb.CartController do
     case Sales.add_to_cart(cart, cart_params) do
       {:ok, cart} ->
         render(conn, "add.json", cart: cart, cart_params: cart_params)
-      {:error, %Ecto.Changeset{} = changeset} ->
+      {:error, %Ecto.Changeset{} = _changeset} ->
         conn
         |> put_flash(:info, "Error adding product to cart")
         |> redirect(to: Routes.page_path(conn, :index))

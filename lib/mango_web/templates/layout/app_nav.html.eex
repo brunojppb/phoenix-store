@@ -12,8 +12,9 @@
       </a>
     </div>
     <div class="collapse navbar-collapse" id="primary-nav">
+
       <ul class="nav navbar-nav navbar-right">
-      <li><%= link cart_link_text(@conn), to: Routes.cart_path(@conn, :show), class: "cart nav-link" %></li>
+        <li><%= link cart_link_text(@conn), to: Routes.cart_path(@conn, :show), class: "cart nav-link" %></li>
         <%= if @customer do %>
           <li><%= link "My Orders", to: Routes.order_path(@conn, :index) %></li>
           <li><%= link "Log Out", to: Routes.session_path(@conn, :delete) %></li>
@@ -25,3 +26,12 @@
     </div>
   </div>
 </nav>
+
+<ul style="display: flex; gap: 12px;">
+  <li class="<%= get_active_locale_class("en") %>">
+    <a href="?locale=en">English</a>
+  </li>
+  <li class="<%= get_active_locale_class("pr_br") %>">
+    <a href="?locale=pt_br">Português</a>
+  </li>
+</ul>
