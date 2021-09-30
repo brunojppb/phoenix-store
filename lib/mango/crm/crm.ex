@@ -13,7 +13,7 @@ defmodule Mango.CRM do
   def create_customer(attrs) do
     attrs
     |> build_customer
-    |> Repo.insert
+    |> Repo.insert()
   end
 
   def get_customer_by_email(email) do
@@ -22,10 +22,13 @@ defmodule Mango.CRM do
 
   def get_customer_by_credentials(email, password) do
     customer = get_customer_by_email(email)
+
     cond do
       customer && check_pass(password, customer.password_hash) ->
         customer
-      true -> :error
+
+      true ->
+        :error
     end
   end
 
@@ -50,7 +53,7 @@ defmodule Mango.CRM do
   def list_customer_tickets(customer) do
     customer
     |> Ecto.assoc(:tickets)
-    |> Repo.all
+    |> Repo.all()
   end
 
   def get_customer_ticket!(customer, id) do

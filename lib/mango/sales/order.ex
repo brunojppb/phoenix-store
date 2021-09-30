@@ -27,6 +27,7 @@ defmodule Mango.Sales.Order do
 
   def checkout_changeset(%__MODULE__{} = order, attrs) do
     required_attrs = [:customer_id, :customer_name, :residence_area, :email]
+
     changeset(order, attrs)
     |> cast(attrs, [:comments | required_attrs])
     |> validate_required(required_attrs)
@@ -34,9 +35,12 @@ defmodule Mango.Sales.Order do
 
   defp set_order_total(changeset) do
     items = get_field(changeset, :line_items)
-    total = Enum.reduce(items, Decimal.new(0), fn(item, acc) ->
-      Decimal.add(acc, item.total)
-    end)
+
+    total =
+      Enum.reduce(items, Decimal.new(0), fn item, acc ->
+        Decimal.add(acc, item.total)
+      end)
+
     changeset
     |> put_change(:total, total)
   end

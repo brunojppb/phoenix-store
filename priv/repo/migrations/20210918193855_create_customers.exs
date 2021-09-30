@@ -4,6 +4,7 @@ defmodule Mango.Repo.Migrations.CreateCustomers do
   def change do
     # case insensitive PG extension
     execute "CREATE EXTENSION IF NOT EXISTS citext"
+
     create table(:customers) do
       add :name, :string
       add :email, :citext

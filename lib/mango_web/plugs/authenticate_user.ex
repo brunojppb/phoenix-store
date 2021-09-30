@@ -13,10 +13,10 @@ defmodule MangoWeb.Plugs.AuthenticateUser do
         |> put_flash(:info, "You must be logged in")
         |> redirect(to: Routes.session_path(conn, :new))
         |> halt
+
       customer ->
         IO.puts("CURRENT CUSTOMER: #{inspect(customer)}")
         conn
     end
   end
-
 end

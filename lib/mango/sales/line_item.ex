@@ -16,6 +16,7 @@ defmodule Mango.Sales.LineItem do
   @doc false
   def changeset(%__MODULE__{} = line_item, attrs) do
     required_attrs = [:product_id, :product_name, :pack_size, :quantity, :unit_price]
+
     line_item
     |> cast(attrs, [:total | [:delete | required_attrs]])
     |> set_delete
@@ -40,8 +41,10 @@ defmodule Mango.Sales.LineItem do
     case get_change(changeset, :product_id) do
       nil ->
         changeset
+
       product_id ->
         product = Catalog.get_product!(product_id)
+
         changeset
         |> put_change(:product_name, product.name)
         |> put_change(:unit_price, product.price)
@@ -50,10 +53,10 @@ defmodule Mango.Sales.LineItem do
   end
 
   defp set_total(changeset) do
-    quantity = get_field(changeset, :quantity) |> Decimal.new
+    quantity = get_field(changeset, :quantity) |> Decimal.new()
     unit_price = get_field(changeset, :unit_price)
+
     changeset
     |> put_change(:total, Decimal.mult(unit_price, quantity))
   end
-
 end

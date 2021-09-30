@@ -14,11 +14,12 @@ defmodule MangoWeb.RegistrationController do
         conn
         |> put_flash(:info, "Registration successful")
         |> redirect(to: Routes.page_path(conn, :index))
+
       {:error, changeset} ->
         residence_areas = Auroville.ResidenceService.list_areas()
+
         conn
         |> render(:new, changeset: changeset, residence_areas: residence_areas)
     end
   end
-
 end

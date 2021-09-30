@@ -3,7 +3,7 @@ defmodule MangoWeb.Plugs.FetchCartTest do
   alias Mango.Sales.Order
 
   test "create and set cart on first visit" do
-    conn = get build_conn(), "/"
+    conn = get(build_conn(), "/")
 
     cart_id = get_session(conn, :cart_id)
     assert %Order{status: "In Cart"} = conn.assigns.cart
@@ -11,11 +11,10 @@ defmodule MangoWeb.Plugs.FetchCartTest do
   end
 
   test "fetch cart from session in subsequent visit" do
-    conn = get build_conn(), "/"
+    conn = get(build_conn(), "/")
 
     cart_id = get_session(conn, :cart_id)
-    conn = get conn, "/"
+    conn = get(conn, "/")
     assert cart_id == conn.assigns.cart.id
-
   end
 end

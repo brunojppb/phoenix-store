@@ -15,6 +15,5 @@ defmodule Mango.Repo.Migrations.CreateProduct do
     end
 
     create unique_index(:products, [:sku])
-
   end
 end

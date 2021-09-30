@@ -8,13 +8,16 @@ defmodule MangoWeb.SessionController do
 
   def create(conn, %{"session" => session_params}) do
     %{"email" => email, "password" => password} = session_params
+
     case CRM.get_customer_by_credentials(email, password) do
       :error ->
         conn
         |> put_flash(:error, "Invalid email/password combination")
         |> render("new.html")
+
       customer ->
         redirect_path = get_session(conn, :intent_to_visit) || Routes.page_path(conn, :index)
+
         conn
         |> assign(:current_customer, customer)
         |> put_session(:customer_id, customer.id)

@@ -49,7 +49,6 @@ defmodule MangoWeb.Router do
     get "/orders/:id", OrderController, :show
 
     resources "/tickets", TicketController, except: [:edit, :update, :delete]
-
   end
 
   # Other scopes may use custom stacks.

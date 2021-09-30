@@ -10,14 +10,15 @@ defmodule MangoWeb.OrderController do
 
   def show(conn, %{"id" => order_id}) do
     customer = conn.assigns.current_customer
+
     case Sales.get_customer_order(order_id, customer.id) do
       nil ->
         conn
         |> put_flash(:info, "Order not found")
         |> redirect(to: Routes.order_path(conn, :index))
+
       order ->
         render(conn, "show.html", order: order)
     end
   end
-
 end

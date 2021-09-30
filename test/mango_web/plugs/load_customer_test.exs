@@ -17,9 +17,8 @@ defmodule MangoWeb.Plugs.LoadCustomerTest do
     # build a conn struct by posting to the login endpoint
     conn = post build_conn(), "/login", %{"session" => @valid_attrs}
 
-    conn = get conn, "/"
+    conn = get(conn, "/")
 
     assert customer.id == conn.assigns.current_customer.id
   end
-
 end

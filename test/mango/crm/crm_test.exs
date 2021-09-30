@@ -12,7 +12,7 @@ defmodule Mango.CRMTest do
   }
 
   test "build_customer/0 returns a customer changeset" do
-    assert %Ecto.Changeset{data: %Customer{}} = CRM.build_customer
+    assert %Ecto.Changeset{data: %Customer{}} = CRM.build_customer()
   end
 
   test "build_customer/1 returns a customer changeset with values applied" do
@@ -42,5 +42,4 @@ defmodule Mango.CRMTest do
     customer_2 = CRM.get_customer_by_credentials("john@email.com", "secret")
     assert customer_1.id == customer_2.id
   end
-
 end

@@ -3,7 +3,7 @@ defmodule MangoWeb.CategoryView do
 
   def title_case(title) do
     title
-    |> String.downcase
-    |> String.capitalize
+    |> String.downcase()
+    |> String.capitalize()
   end
 end

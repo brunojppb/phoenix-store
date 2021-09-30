@@ -9,5 +9,4 @@ defmodule MangoWeb.Plugs.LoadCustomer do
     customer = customer_id && CRM.get_customer(customer_id)
     assign(conn, :current_customer, customer)
   end
-
 end

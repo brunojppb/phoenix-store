@@ -3,11 +3,11 @@ defmodule MangoWeb.LayoutView do
   import MangoWeb.CartView, only: [cart_count: 1]
 
   def cart_link_text(conn = %Plug.Conn{}) do
-    raw """
+    raw("""
     <span class="cart-count">
       "My Cart (#{cart_count(conn)})"
     </span>
-    """
+    """)
   end
 
   def get_active_locale_class(locale) do

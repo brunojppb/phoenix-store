@@ -23,6 +23,7 @@ defmodule Mango.Sales do
       product_id: String.to_integer(cart_params["product_id"]),
       quantity: String.to_integer(cart_params["quantity"])
     }
+
     existing_items = existing_line_items |> Enum.map(&Map.from_struct/1)
     attrs = %{line_items: [new_item | existing_items]}
     update_cart(cart, attrs)
@@ -31,7 +32,7 @@ defmodule Mango.Sales do
   def update_cart(cart, attrs) do
     cart
     |> Order.changeset(attrs)
-    |> Repo.update
+    |> Repo.update()
   end
 
   def change_cart(%Order{} = order) do
@@ -40,6 +41,7 @@ defmodule Mango.Sales do
 
   def confirm_order(%Order{} = order, attrs) do
     attrs = Map.put(attrs, "status", "Confirmed")
+
     order
     |> Order.checkout_changeset(attrs)
     |> Repo.update()
@@ -52,6 +54,7 @@ defmodule Mango.Sales do
 
   def get_customer_order(order_id, customer_id) do
     query = from(o in Order, where: o.id == ^order_id and o.customer_id == ^customer_id)
+
     case Repo.all(query) do
       [order] -> order
       [] -> nil

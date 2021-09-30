@@ -10,8 +10,7 @@ use Mix.Config
 config :mango,
   ecto_repos: [Mango.Repo]
 
-config :mango, MangoWeb.Gettext,
-  default_locale: "en"
+config :mango, MangoWeb.Gettext, default_locale: "en"
 
 # Configures the endpoint
 config :mango, MangoWeb.Endpoint,

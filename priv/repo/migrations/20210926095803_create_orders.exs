@@ -9,6 +9,5 @@ defmodule Mango.Repo.Migrations.CreateOrders do
 
       timestamps()
     end
-
   end
 end

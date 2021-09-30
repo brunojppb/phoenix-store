@@ -31,6 +31,7 @@ defmodule Mango.CRM.Customer do
     case changeset.valid? do
       true ->
         change(changeset, add_hash(changeset.changes.password))
+
       _ ->
         changeset
     end

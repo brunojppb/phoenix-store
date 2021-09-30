@@ -32,11 +32,13 @@ defmodule MangoWeb.TicketController do
 
   def show(conn, %{"id" => id}) do
     customer = conn.assigns.current_customer
+
     case CRM.get_customer_ticket!(customer, id) do
       nil ->
         conn
         |> put_flash(:info, "Ticket not found")
         |> redirect(to: Routes.ticket_path(conn, :index))
+
       ticket ->
         render(conn, "show.html", ticket: ticket)
     end
