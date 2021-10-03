@@ -16,6 +16,10 @@ defmodule MangoWeb.Router do
     plug MangoWeb.Plugs.FetchCart
   end
 
+  pipeline :admin do
+    plug MangoWeb.Plugs.AdminLayout
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
   end
@@ -49,6 +53,12 @@ defmodule MangoWeb.Router do
     get "/orders/:id", OrderController, :show
 
     resources "/tickets", TicketController, except: [:edit, :update, :delete]
+  end
+
+  scope "/admin", MangoWeb.Admin, as: :admin do
+    pipe_through [:browser, :admin]
+
+    resources "/users", UserController
   end
 
   # Other scopes may use custom stacks.
